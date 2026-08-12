@@ -139,6 +139,39 @@
     }
     .roles dt { color: var(--ink); font-weight: 600; }
     .roles dd { margin: 0; color: var(--muted); }
+    .roles dd a {
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule);
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+    .roles dd a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+    .yr {
+      margin-left: 0.4rem;
+      font-weight: 400;
+      color: var(--faint);
+      font-variant-numeric: tabular-nums;
+    }
+    /* talk titles need more room in the left column than company names do */
+    .talks { grid-template-columns: minmax(0, 13.5rem) 1fr; }
+
+    .areas {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 33rem;
+      font-size: 0.9375rem;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+    .areas li:not(:last-child)::after {
+      content: "·";
+      color: var(--faint);
+      margin: 0 0.5rem;
+    }
+
     @media (max-width: 34rem) {
       .roles { grid-template-columns: 1fr; row-gap: 0.15rem; }
       .roles dd { margin-bottom: 0.7rem; }
@@ -227,7 +260,28 @@
         Today I'm building Ādisūtra.ai — helping large-scale enterprises move from AI
         <em>curiosity</em> to AI <em>capabilities</em> at scale, from first principles.
       </p>
+      <p>
+        I care deeply about <em>Responsible AI</em> — model risk governance, data lineage,
+        evaluation frameworks, human-in-the-loop systems, and auditability — the things
+        that make AI trustworthy enough to run in a regulated enterprise.
+      </p>
     </div>
+
+    <section>
+      <h2 class="label">Focus areas</h2>
+      <ul class="areas">
+        <li>LLM &amp; Agentic AI Platforms</li>
+        <li>Data Architecture &amp; Engineering</li>
+        <li>Enterprise Architecture</li>
+        <li>AI/ML Ops</li>
+        <li>Responsible AI &amp; Governance</li>
+        <li>Clinical &amp; Health Tech</li>
+        <li>Cloud-Native (AWS / Azure / GCP)</li>
+        <li>API-first &amp; Event-Driven Integration</li>
+        <li>Financial Services &amp; Fintech</li>
+        <li>M&amp;A and Startups</li>
+      </ul>
+    </section>
 
     <section>
       <h2 class="label">Previously</h2>
@@ -246,6 +300,29 @@
 
         <dt>Kore.ai</dt>
         <dd>Chief Solution Architect &amp; Head of Forward Deployed Engineering</dd>
+      </dl>
+    </section>
+
+    <section>
+      <h2 class="label">Recent speaking</h2>
+      <dl class="roles talks">
+        <dt>Super AI/ML Summit <span class="yr">2025</span></dt>
+        <dd><a href="https://www.linkedin.com/posts/hiteshseth_looking-forward-to-speaking-at-the-annual-activity-7389536955392290816-uzug">Rise of Agents</a></dd>
+
+        <dt>Quantum + AI 2.0 <span class="yr">2025</span></dt>
+        <dd><a href="https://www.linkedin.com/posts/hiteshseth_looking-forward-for-to-meeting-old-and-new-activity-7370885689363554304-MiUA">Beyond PQC: Quantum Computing &amp; Blockchain Security</a></dd>
+
+        <dt>Innodata GenAI Summit <span class="yr">2025</span></dt>
+        <dd><a href="https://world.aiacceleratorinstitute.com/location/innodatagenaisummit/agenda">High-Quality Data for Modern AI Systems</a></dd>
+
+        <dt>AI Infra Summit <span class="yr">2025</span></dt>
+        <dd><a href="https://www.linkedin.com/posts/hiteshseth_im-joining-the-speaker-lineup-at-the-ai-activity-7356060635375280128-6amo">Deploying GenAI in Highly Regulated Industries</a></dd>
+
+        <dt>BIAN Banking Summit, London <span class="yr">2024</span></dt>
+        <dd><a href="https://www.linkedin.com/posts/hiteshseth_the-first-roundtables-have-been-announced-activity-7258130358443913217-Zi_6">API-Centric Platforms for Generative AI</a></dd>
+
+        <dt>Confluent Current <span class="yr">2023</span></dt>
+        <dd><a href="https://www.confluent.io/events/current/2023/kafka-flink-and-beyond/">Keynote: Kafka, Flink &amp; Beyond</a></dd>
       </dl>
     </section>
 
