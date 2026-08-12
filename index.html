@@ -10,6 +10,10 @@
   <meta property="og:description" content="Co-Founder &amp; Technology Advisor, Ādisūtra.ai — enterprise AI, from first principles.">
   <meta property="og:url" content="https://hiteshseth.com/">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="https://hiteshseth.com/portrait.jpg">
+  <meta property="og:image:width" content="640">
+  <meta property="og:image:height" content="640">
+  <meta property="og:image:alt" content="Hitesh Seth">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:creator" content="@hitech">
   <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
@@ -75,7 +79,22 @@
       main::before { left: 0.5rem; }
     }
 
-    .masthead { display: grid; gap: 0.5rem; }
+    .masthead { display: grid; gap: 1.25rem; }
+    .ident { display: grid; gap: 0.5rem; }
+
+    .portrait {
+      display: block;
+      width: 5.5rem;
+      height: 5.5rem;
+      object-fit: cover;
+      border: 1px solid var(--rule);
+      border-radius: 3px;
+      order: -1; /* photo leads on narrow screens, sits beside the name on wide */
+    }
+    @media (min-width: 34rem) {
+      .masthead { grid-template-columns: 1fr auto; align-items: center; gap: 2rem; }
+      .portrait { width: 7.5rem; height: 7.5rem; order: 0; }
+    }
 
     h1 {
       margin: 0;
@@ -188,8 +207,11 @@
 <body>
   <main>
     <header class="masthead">
-      <h1>Hitesh Seth</h1>
-      <p class="role">Co-Founder &amp; Technology Advisor, <a href="https://adisutra.ai">Ādisūtra.ai</a></p>
+      <div class="ident">
+        <h1>Hitesh Seth</h1>
+        <p class="role">Co-Founder &amp; Technology Advisor, <a href="https://adisutra.ai">Ādisūtra.ai</a></p>
+      </div>
+      <img class="portrait" src="portrait.jpg" alt="Hitesh Seth" width="640" height="640" fetchpriority="high">
     </header>
 
     <div class="bio">
