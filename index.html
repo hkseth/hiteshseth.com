@@ -53,16 +53,29 @@
 
     main {
       position: relative;
-      max-width: 40rem;
+      width: min(100% - 3rem, 44rem);
       min-height: 100svh;
-      margin: 0 auto;
-      padding: 4.5rem 1.5rem 3.5rem 2.5rem;
+      margin-inline: auto;
+      padding: 4.5rem 0 3.5rem 2.5rem;
       display: flex;
       flex-direction: column;
       /* `safe` keeps the top reachable once the content outgrows the viewport;
          browsers that don't support it fall back to top-aligned, which is fine */
       justify-content: safe center;
+      align-items: stretch;
+      gap: 2.25rem;
+    }
+
+    /* The two columns of the wide layout; plain stacked blocks until then. */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
       align-items: start;
+      gap: 1.75rem;
+    }
+    .content {
+      display: flex;
+      flex-direction: column;
       gap: 2.25rem;
     }
 
@@ -152,8 +165,8 @@
       color: var(--faint);
       font-variant-numeric: tabular-nums;
     }
-    /* talk titles need more room in the left column than company names do */
-    .talks { grid-template-columns: minmax(0, 13.5rem) 1fr; }
+    /* event names run longer than company names, and carry a year besides */
+    .talks { grid-template-columns: minmax(0, 15rem) 1fr; }
 
     .areas {
       margin: 0;
@@ -235,18 +248,59 @@
       max-width: 33rem;
     }
     footer cite { font-style: italic; }
+
+    /* Wide screens: identity moves into a sticky left column so the page uses
+       the width while running text keeps a readable measure. The two columns
+       are separate flex children, so neither one's height drags on the other. */
+    @media (min-width: 72rem) {
+      main {
+        width: min(75vw, 92rem);
+        padding-left: 3.5rem;
+        flex-direction: row;
+        align-items: start;
+        justify-content: flex-start;
+        gap: clamp(3rem, 5vw, 6rem);
+      }
+
+      .sidebar {
+        flex: 0 0 auto;
+        width: clamp(16rem, 20vw, 21rem);
+        position: sticky;
+        top: 4.5rem;
+      }
+      .masthead { grid-template-columns: 1fr; align-items: start; gap: 1.25rem; }
+      .portrait { order: -1; width: 11rem; height: 11rem; }
+      h1 { font-size: 3rem; }
+      .links { flex-direction: column; gap: 0.65rem; }
+
+      .content { flex: 1 1 auto; min-width: 0; }
+      .bio { max-width: 37rem; }
+      .areas, .facts, .roles, footer { max-width: 48rem; }
+      .talks { grid-template-columns: minmax(0, 18rem) 1fr; }
+    }
   </style>
 </head>
 <body>
   <main>
-    <header class="masthead">
-      <div class="ident">
-        <h1>Hitesh Seth</h1>
-        <p class="role">Co-Founder &amp; Technology Advisor, <a href="https://adisutra.ai">Ādisūtra.ai</a></p>
-      </div>
-      <img class="portrait" src="portrait.jpg" alt="Hitesh Seth" width="640" height="640" fetchpriority="high">
-    </header>
+    <div class="sidebar">
+      <header class="masthead">
+        <div class="ident">
+          <h1>Hitesh Seth</h1>
+          <p class="role">Co-Founder &amp; Technology Advisor, <a href="https://adisutra.ai">Ādisūtra.ai</a></p>
+        </div>
+        <img class="portrait" src="portrait.jpg" alt="Hitesh Seth" width="640" height="640" fetchpriority="high">
+      </header>
 
+      <nav class="links" aria-label="Elsewhere">
+        <a href="https://adisutra.ai">Ādisūtra.ai</a>
+        <a href="https://linkedin.com/in/hiteshseth" rel="me">LinkedIn</a>
+        <a href="https://x.com/hitech" rel="me">X</a>
+        <a href="https://substack.com/@hiteshseth" rel="me">Substack</a>
+        <a href="mailto:hitesh.seth@gmail.com">Email</a>
+      </nav>
+    </div>
+
+    <div class="content">
     <div class="bio">
       <p>
         I'm a hands-on technology executive and enterprise architect with 30+ years
@@ -342,19 +396,12 @@
       </ul>
     </section>
 
-    <nav class="links" aria-label="Elsewhere">
-      <a href="https://adisutra.ai">Ādisūtra.ai</a>
-      <a href="https://linkedin.com/in/hiteshseth" rel="me">LinkedIn</a>
-      <a href="https://x.com/hitech" rel="me">X</a>
-      <a href="https://substack.com/@hiteshseth" rel="me">Substack</a>
-      <a href="mailto:hitesh.seth@gmail.com">Email</a>
-    </nav>
-
     <footer>
       IIT Kanpur · Stanford Executive Program · 7 US patents in payments &amp; commerce ·
       Author of <cite>Special Edition Using JavaBeans</cite> and
-      <cite>Microsoft .NET Kick Start</cite> · New York City
+      <cite>Microsoft .NET Kick Start</cite> · Princeton, NJ
     </footer>
+    </div>
   </main>
 </body>
 </html>
