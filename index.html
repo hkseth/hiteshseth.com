@@ -4,17 +4,22 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hitesh Seth — Enterprise AI, from first principles</title>
-  <meta name="description" content="Hitesh Seth — Founder &amp; CTO of Ādisūtra.ai. Technology executive and enterprise architect with 25+ years building large-scale data, AI/ML, and GenAI platforms in regulated industries.">
+  <meta name="description" content="Hitesh Seth — Co-Founder, Ādisūtra.ai. Hands-on technology executive and enterprise architect with 30+ years turning large-scale data, AI/ML, and Agentic AI into production reality in regulated industries.">
+  <link rel="canonical" href="https://hiteshseth.com/">
   <meta property="og:title" content="Hitesh Seth">
-  <meta property="og:description" content="Founder &amp; CTO, Ādisūtra.ai — Enterprise AI, from first principles.">
-  <meta property="og:url" content="https://hiteshseth.com">
+  <meta property="og:description" content="Co-Founder, Ādisūtra.ai — enterprise AI, from first principles.">
+  <meta property="og:url" content="https://hiteshseth.com/">
   <meta property="og:type" content="website">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23b45309'/%3E%3Ctext x='32' y='42' font-family='-apple-system,Helvetica,Arial,sans-serif' font-size='28' font-weight='600' fill='%23faf9f7' text-anchor='middle'%3Ehs%3C/text%3E%3C/svg%3E">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:creator" content="@hitech">
+  <meta name="theme-color" content="#faf9f7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f0e0d" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23b45309'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='30' font-weight='600' fill='%23faf9f7' text-anchor='middle'%3Ehs%3C/text%3E%3C/svg%3E">
   <style>
     :root {
       --bg: #faf9f7;
       --text: #1c1917;
-      --muted: #78716c;
+      --muted: #57534e;
       --faint: #a8a29e;
       --accent: #b45309;
       --rule: #e7e5e4;
@@ -25,83 +30,119 @@
         --text: #e7e5e4;
         --muted: #a8a29e;
         --faint: #78716c;
-        --accent: #d97706;
+        --accent: #e0912f;
         --rule: #292524;
       }
     }
+
     * { box-sizing: border-box; margin: 0; }
+
     body {
       background: var(--bg);
       color: var(--text);
       font: 16px/1.7 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
+
     main {
-      max-width: 36rem;
+      max-width: 38rem;
       min-height: 100svh;
       margin: 0 auto;
-      padding: 5rem 1.5rem 3rem;
+      padding: 4.5rem 1.5rem 3rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      animation: rise 0.7s ease-out both;
     }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(0.6rem); }
+      to   { opacity: 1; transform: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      main { animation: none; }
+    }
+
     h1 {
-      font-size: 2.1rem;
-      font-weight: 650;
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+      font-size: clamp(2.25rem, 7vw, 3rem);
+      font-weight: 600;
       letter-spacing: -0.02em;
-      line-height: 1.2;
+      line-height: 1.1;
     }
-    .tagline {
-      margin-top: 0.6rem;
-      font-size: 1.05rem;
+
+    .role {
+      margin-top: 0.75rem;
+      font-size: 1.1rem;
       color: var(--muted);
     }
-    .tagline a {
-      color: inherit;
-      text-decoration: none;
-      border-bottom: 1px solid var(--faint);
-    }
-    .tagline a:hover { color: var(--accent); border-bottom-color: var(--accent); }
-    .motto {
-      margin-top: 0.25rem;
-      font-size: 1.05rem;
+    .role a {
       color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
     }
+    .role a:hover, .role a:focus-visible { border-bottom-color: currentColor; }
+
+    .motto {
+      margin-top: 0.15rem;
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--muted);
+    }
+
     .bio {
-      margin-top: 2rem;
-      color: var(--text);
+      margin-top: 2.25rem;
+      max-width: 34rem;
     }
-    .previously {
-      margin-top: 1.5rem;
+    .bio + .bio { margin-top: 1rem; }
+
+    .prev {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--rule);
       font-size: 0.95rem;
       color: var(--muted);
     }
-    .previously span {
-      font-size: 0.75rem;
+    .label {
+      display: block;
+      margin-bottom: 0.35rem;
+      font-size: 0.7rem;
       font-weight: 600;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.11em;
       text-transform: uppercase;
       color: var(--faint);
-      margin-right: 0.5rem;
     }
+
     .links {
-      margin-top: 2.5rem;
+      margin-top: 2.25rem;
       display: flex;
       flex-wrap: wrap;
-      gap: 0.4rem 1.4rem;
+      gap: 0.5rem 1.5rem;
     }
     .links a {
       color: var(--text);
       text-decoration: none;
-      border-bottom: 1px solid var(--faint);
-      padding-bottom: 1px;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 2px;
+      transition: color 0.15s, border-color 0.15s;
     }
-    .links a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+    .links a:hover, .links a:focus-visible {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
     footer {
-      margin-top: 3rem;
-      padding-top: 1.25rem;
-      border-top: 1px solid var(--rule);
+      margin-top: 2.75rem;
       font-size: 0.85rem;
+      line-height: 1.6;
       color: var(--faint);
     }
   </style>
@@ -109,24 +150,43 @@
 <body>
   <main>
     <h1>Hitesh Seth</h1>
-    <p class="tagline">Founder &amp; CTO, <a href="https://adisutra.ai">Ādisūtra.ai</a></p>
+    <p class="role">Co-Founder, <a href="https://adisutra.ai">Ādisūtra.ai</a></p>
     <p class="motto">Enterprise AI, from first principles.</p>
+
     <p class="bio">
-      Hands-on technology executive and enterprise architect with over 25 years
-      building large-scale data, AI/ML, and GenAI platforms in regulated
-      industries — financial services, insurance, and life sciences. Now helping
-      enterprises move from experimental AI to production-grade capability,
-      grounded in compliance and organizational context.
+      I'm a hands-on technology executive and enterprise architect with 30+ years
+      turning large-scale data, AI/ML, GenAI, and Agentic AI into production reality
+      inside the world's most regulated industries — financial services, insurance,
+      and life sciences. I've built and led global engineering and architecture teams,
+      and shipped mission-critical platforms serving hundreds of millions of users
+      and global clinical research programs.
     </p>
-    <p class="previously"><span>Previously</span>JPMorgan Chase · Salesforce · IQVIA · American Express · Kore.ai</p>
-    <nav class="links" aria-label="Profiles">
-      <a href="https://adisutra.ai">adisutra.ai</a>
-      <a href="https://linkedin.com/in/hiteshseth">LinkedIn</a>
-      <a href="https://x.com/hitech">X</a>
-      <a href="https://substack.com/@hiteshseth">Substack</a>
-      <a href="https://github.com/hkseth">GitHub</a>
+    <p class="bio">
+      Today I'm building Ādisūtra.ai — helping enterprises move from AI
+      <em>curiosity</em> to AI <em>capability</em>, from first principles.
+    </p>
+
+    <p class="prev">
+      <span class="label">Previously</span>
+      Managing Director, Data &amp; AI Platforms at JPMorganChase · Global Chief
+      Architect at American Express, IQVIA, Salesforce, and Kore.ai · CTO of an
+      early observability startup
+    </p>
+
+    <nav class="links" aria-label="Elsewhere">
+      <a href="https://adisutra.ai">Ādisūtra.ai</a>
+      <a href="https://linkedin.com/in/hiteshseth" rel="me">LinkedIn</a>
+      <a href="https://x.com/hitech" rel="me">X</a>
+      <a href="https://substack.com/@hiteshseth" rel="me">Substack</a>
+      <a href="https://github.com/hkseth" rel="me">GitHub</a>
+      <a href="mailto:hitesh.seth@gmail.com">Email</a>
     </nav>
-    <footer>IIT Kanpur · Stanford GSB · 7 US patents in mobile &amp; online payments</footer>
+
+    <footer>
+      IIT Kanpur · Stanford GSB · 7 US patents in payments &amp; commerce · Author,
+      <em>Special Edition Using JavaBeans</em> and <em>Microsoft .NET Kick Start</em><br>
+      New York City
+    </footer>
   </main>
 </body>
 </html>
