@@ -1,0 +1,7 @@
+# Secrets & credentials — never commit
+.env
+.gittoken
+.git-credentials
+
+# OS noise
+.DS_Store
