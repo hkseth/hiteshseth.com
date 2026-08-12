@@ -23,7 +23,7 @@
       --faint:  #8b939e;
       --rule:   #e0e4ea;
       --accent: #2f4a8f;
-      --thread: linear-gradient(to bottom, var(--accent) 0, var(--accent) 3.5rem, var(--rule) 12rem, transparent 100%);
+      --thread: linear-gradient(to bottom, var(--accent) 0, var(--accent) 3.5rem, var(--rule) 25%, var(--rule) 72%, transparent 100%);
     }
     @media (prefers-color-scheme: dark) {
       :root {
@@ -55,7 +55,9 @@
       padding: 4.5rem 1.5rem 3.5rem 2.5rem;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      /* `safe` keeps the top reachable once the content outgrows the viewport;
+         browsers that don't support it fall back to top-aligned, which is fine */
+      justify-content: safe center;
       align-items: start;
       gap: 2.25rem;
     }
@@ -94,14 +96,6 @@
     }
     .role a:hover { color: var(--accent); }
 
-    .motto {
-      margin: 0;
-      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
-      font-style: italic;
-      font-size: 1.0625rem;
-      color: var(--accent);
-    }
-
     .bio { display: grid; gap: 0.9rem; max-width: 33rem; }
     .bio p { margin: 0; }
     .bio em { font-style: normal; color: var(--accent); }
@@ -130,6 +124,37 @@
       .roles { grid-template-columns: 1fr; row-gap: 0.15rem; }
       .roles dd { margin-bottom: 0.7rem; }
     }
+
+    .facts {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 0.7rem;
+      max-width: 33rem;
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+    .facts li { position: relative; padding-left: 1.5rem; }
+    /* each fact tied off with a short segment of the same thread */
+    .facts li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.75em;
+      width: 0.75rem;
+      height: 1px;
+      background: var(--accent);
+    }
+    .facts em { font-style: italic; color: var(--ink); }
+    .facts a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule);
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+    .facts a:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
     .links {
       display: flex;
@@ -165,7 +190,6 @@
     <header class="masthead">
       <h1>Hitesh Seth</h1>
       <p class="role">Co-Founder, <a href="https://adisutra.ai">Ādisūtra.ai</a></p>
-      <p class="motto">Enterprise AI, from first principles.</p>
     </header>
 
     <div class="bio">
@@ -178,8 +202,8 @@
         and global clinical research programs.
       </p>
       <p>
-        Today I'm building Ādisūtra.ai, helping enterprises move from AI
-        <em>curiosity</em> to AI <em>capability</em>.
+        Today I'm building Ādisūtra.ai — helping enterprises move from AI
+        <em>curiosity</em> to AI <em>capability</em>, from first principles.
       </p>
     </div>
 
@@ -201,6 +225,21 @@
         <dt>Kore.ai</dt>
         <dd>Chief Solution Architect &amp; Head of Forward Deployed Engineering</dd>
       </dl>
+    </section>
+
+    <section>
+      <h2 class="label">A few other things</h2>
+      <ul class="facts">
+        <li>I'm a professional portrait photographer.</li>
+        <li>I play golf — a recent convert, but I got my first hole-in-one this year.</li>
+        <li>
+          <em>Keera</em> is Hindi for the curiosity bug. It's what carried me from a
+          curious teenager in Agra to a lifelong learner at Stanford, and it's still
+          the thread through everything I build. I told that story on the
+          <a href="https://www.xiaoyuzhoufm.com/episode/6a5d0c52a3fec224d5a013e4">PILOT
+          Earthbook podcast</a>.
+        </li>
+      </ul>
     </section>
 
     <nav class="links" aria-label="Elsewhere">
