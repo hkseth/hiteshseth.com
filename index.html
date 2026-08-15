@@ -74,7 +74,7 @@
     .content {
       display: flex;
       flex-direction: column;
-      gap: 2.25rem;
+      gap: 2.75rem;
     }
 
     /* sūtra — the thread the page hangs from */
@@ -126,9 +126,46 @@
     }
     .role a:hover { color: var(--accent); }
 
-    .bio { display: grid; gap: 0.9rem; max-width: 33rem; }
+    .bio { display: grid; gap: 1.05rem; max-width: 33rem; }
     .bio p { margin: 0; }
     .bio em { font-style: normal; color: var(--accent); }
+    /* the opening paragraph carries the page, so it gets a size of its own */
+    .lede {
+      font-size: 1.1875rem;
+      line-height: 1.6;
+      letter-spacing: -0.005em;
+    }
+
+    /* sūtra means thread, but it also means aphorism — so the values are set
+       as numbered sutras rather than bullets */
+    .values ol {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: sutra;
+      display: grid;
+      gap: 0.8rem;
+      max-width: 34rem;
+    }
+    .values li {
+      counter-increment: sutra;
+      display: grid;
+      grid-template-columns: 1.6rem 1fr;
+      align-items: baseline;
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+      font-size: 1.125rem;
+      line-height: 1.45;
+      color: var(--ink);
+      text-wrap: pretty;
+    }
+    .values li::before {
+      content: counter(sutra);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      color: var(--accent);
+    }
 
     .label {
       margin: 0 0 0.9rem;
@@ -395,7 +432,7 @@
 
     <div class="content">
     <div class="bio">
-      <p>
+      <p class="lede">
         I'm a hands-on technology executive and enterprise architect with 30+ years
         turning large-scale data, AI/ML, GenAI, and Agentic AI into production reality
         inside the world's most regulated industries — financial services, insurance,
@@ -413,6 +450,19 @@
         that make AI trustworthy enough to run in a regulated enterprise.
       </p>
     </div>
+
+    <section class="values">
+      <h2 class="label">Core values</h2>
+      <ol>
+        <li>Learning is life's greatest privilege.</li>
+        <li>The best way to learn is to teach.</li>
+        <li>Be relentlessly authentic.</li>
+        <li>Own the outcome — run toward the fire.</li>
+        <li>Stay hungry. Stay foolish.</li>
+        <li>Honor your teachers by paying their gift forward.</li>
+        <li>Use technology to improve people's lives, not just build better systems.</li>
+      </ol>
+    </section>
 
     <section>
       <h2 class="label">Focus areas</h2>
