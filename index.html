@@ -141,8 +141,12 @@
 
     /* Until the wide layout kicks in the sidebar is not a box at all: its
        children flow directly in main, and the credits are ordered last so
-       they still read as a footer on narrow screens. */
+       they still read as a footer on narrow screens. The personal facts live
+       in the sidebar for the wide layout's sake, but ordering them just above
+       the credits keeps the narrow reading order they had when they sat at the
+       bottom of the running content. */
     .sidebar { display: contents; }
+    .personal { order: 9; }
     .credits { order: 10; }
     .content {
       display: flex;
@@ -210,35 +214,41 @@
     }
 
     /* sūtra means thread, but it also means aphorism — so the values are set
-       as numbered sutras rather than bullets */
+       as numbered sutras rather than bullets. They run on as one continuous
+       passage, the way verses are traditionally set, with the raised numeral
+       doing the separating that `·` does in the focus areas below. */
     .values ol {
       margin: 0;
       padding: 0;
       list-style: none;
       counter-reset: sutra;
-      display: grid;
-      gap: 0.8rem;
-      max-width: 34rem;
-    }
-    .values li {
-      counter-increment: sutra;
-      display: grid;
-      grid-template-columns: 1.6rem 1fr;
-      align-items: baseline;
+      max-width: 46rem;
       font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
-      font-size: 1.125rem;
-      line-height: 1.45;
+      font-size: 1.0625rem;
+      line-height: 1.85;
       color: var(--ink);
       text-wrap: pretty;
     }
+    .values li {
+      counter-increment: sutra;
+      display: inline;
+    }
     .values li::before {
       content: counter(sutra);
+      margin-right: 0.3rem;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      font-size: 0.75rem;
+      font-size: 0.6875rem;
       font-weight: 600;
       font-variant-numeric: tabular-nums;
       color: var(--accent);
+      vertical-align: 0.42em;
     }
+    /* The source newline between items already supplies one space; this opens
+       it enough to read as a break between sutras. It has to hang off the end
+       of the preceding sutra rather than lead the next one — a margin at the
+       start of a wrapped line is not collapsed, and would rag the left edge
+       every time a break landed just before a numeral. */
+    .values li:not(:last-child) { margin-right: 0.35rem; }
 
     .label {
       margin: 0 0 0.9rem;
@@ -420,6 +430,9 @@
         gap: clamp(3rem, 5vw, 6rem);
       }
 
+      /* Not sticky: with the personal facts in it the column is tall enough to
+         outrun a laptop viewport, and a stuck element taller than the screen
+         puts its own bottom permanently out of reach. */
       .sidebar {
         display: flex;
         flex-direction: column;
@@ -427,10 +440,8 @@
         gap: 1.6rem;
         flex: 0 0 auto;
         width: clamp(16rem, 20vw, 21rem);
-        position: sticky;
-        top: 4.5rem;
       }
-      .credits { order: 0; }
+      .credits, .personal { order: 0; }
       .masthead { grid-template-columns: 1fr; align-items: start; gap: 1.25rem; }
       .portrait { order: -1; width: 11rem; height: 11rem; }
       h1 { font-size: 3rem; }
@@ -438,9 +449,18 @@
       .links { flex-direction: column; flex-wrap: nowrap; gap: 0.45rem; }
       .credits ul { flex-direction: column; flex-wrap: nowrap; gap: 0.6rem; }
 
+      /* the facts drop to the credits' scale so the left column reads as one
+         continuous thread — name, links, credentials, the person — rather than
+         as a second body of running text competing with the right column */
+      .personal .label { margin-bottom: 0.75rem; }
+      .facts { font-size: 0.8125rem; line-height: 1.55; gap: 0.6rem; }
+      .facts li { padding-left: 1.15rem; }
+      .facts li::before { width: 0.6rem; top: 0.72em; }
+
       .content { flex: 1 1 auto; min-width: 0; }
-      .bio { max-width: 37rem; }
-      .areas, .facts, .roles { max-width: 48rem; }
+      .bio { max-width: 44rem; font-size: 1.0625rem; }
+      .lede { font-size: 1.25rem; }
+      .areas, .roles { max-width: 48rem; }
       .talks { grid-template-columns: minmax(0, 18rem) 1fr; }
     }
   </style>
@@ -501,6 +521,22 @@
           </li>
         </ul>
       </footer>
+
+      <section class="personal">
+        <h2 class="label">A few other things</h2>
+        <ul class="facts">
+          <li>I'm a professional portrait photographer.</li>
+          <li>I love golf — a recent convert, but love to play and I even got my first hole-in-one :).</li>
+          <li>I love to cook, particularly Middle Eastern and Asian cuisines.</li>
+          <li>
+            <em>Keera</em> (<i lang="hi-Latn">kīṛā</i>) is Hindi for the curiosity bug. It's what carried me from a
+            curious teenager in Agra to a lifelong learner at Stanford, and it's still
+            the thread through everything I build. I told that story on the
+            <a href="https://www.xiaoyuzhoufm.com/episode/6a5d0c52a3fec224d5a013e4">PILOT
+            Earthbook podcast</a>.
+          </li>
+        </ul>
+      </section>
     </div>
 
     <div class="content">
@@ -594,22 +630,6 @@
         <dt>Confluent Current <span class="yr">2023</span></dt>
         <dd><a href="https://www.confluent.io/events/current/2023/kafka-flink-and-beyond/">Keynote: Kafka, Flink &amp; Beyond</a></dd>
       </dl>
-    </section>
-
-    <section>
-      <h2 class="label">A few other things</h2>
-      <ul class="facts">
-        <li>I'm a professional portrait photographer.</li>
-        <li>I love golf — a recent convert, but love to play and I even got my first hole-in-one :).</li>
-        <li>I love to cook, particularly Middle Eastern and Asian cuisines.</li>
-        <li>
-          <em>Keera</em> (<i lang="hi-Latn">kīṛā</i>) is Hindi for the curiosity bug. It's what carried me from a
-          curious teenager in Agra to a lifelong learner at Stanford, and it's still
-          the thread through everything I build. I told that story on the
-          <a href="https://www.xiaoyuzhoufm.com/episode/6a5d0c52a3fec224d5a013e4">PILOT
-          Earthbook podcast</a>.
-        </li>
-      </ul>
     </section>
 
     </div>
