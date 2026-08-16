@@ -141,14 +141,11 @@
 
     /* Until the wide layout kicks in the sidebar is not a box at all: its
        children flow directly in main, and the credits are ordered last so
-       they still read as a footer on narrow screens. The personal facts live
-       in the sidebar for the wide layout's sake, but ordering them just above
-       the credits keeps the narrow reading order they had when they sat at the
-       bottom of the running content. Same for the talks, which trail the rest
-       of the running content. */
+       they still read as a footer on narrow screens. The talks live in the
+       sidebar for the wide layout's sake, so they are ordered after the running
+       content rather than ahead of it. */
     .sidebar { display: contents; }
     .speaking { order: 8; }
-    .personal { order: 9; }
     .credits { order: 10; }
     .content {
       display: flex;
@@ -341,6 +338,30 @@
     }
     .facts a:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
+    /* patents and books — footnotes to the roles they sit under, so they set a
+       step below the roles rather than as a section of their own */
+    .marks {
+      margin: 1.15rem 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 0.5rem;
+      max-width: 48rem;
+      font-size: 0.8125rem;
+      line-height: 1.55;
+      color: var(--faint);
+    }
+    .marks li { display: flex; align-items: flex-start; gap: 0.5rem; }
+    .marks .icon { margin-top: 0.15em; }
+    .marks a {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-color: var(--rule);
+      text-underline-offset: 3px;
+      transition: color 0.15s ease, text-decoration-color 0.15s ease;
+    }
+    .marks a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+
     .icon { width: 15px; height: 15px; flex: none; color: var(--faint); }
 
     .links {
@@ -391,9 +412,8 @@
       border: 1px solid var(--rule);
       background: #fff;
     }
-    /* scoped past `.credits a` below, which would otherwise rule these */
-    .credits .edu a { color: inherit; text-decoration: none; transition: color 0.15s ease; }
-    .credits .edu a:hover {
+    .edu a { color: inherit; text-decoration: none; transition: color 0.15s ease; }
+    .edu a:hover {
       color: var(--accent);
       text-decoration: underline;
       text-decoration-color: var(--accent);
@@ -408,16 +428,6 @@
       gap: 0.5rem 1.35rem;
     }
     .credits li { display: flex; align-items: flex-start; gap: 0.5rem; }
-    .credits .icon { margin-top: 0.15em; }
-    .credits cite { font-style: italic; }
-    .credits a {
-      color: inherit;
-      text-decoration: underline;
-      text-decoration-color: var(--rule);
-      text-underline-offset: 3px;
-      transition: color 0.15s ease, text-decoration-color 0.15s ease;
-    }
-    .credits a:hover { color: var(--accent); text-decoration-color: var(--accent); }
 
     /* Wide screens: identity moves into a sticky left column so the page uses
        the width while running text keeps a readable measure. The two columns
@@ -432,9 +442,9 @@
         gap: clamp(3rem, 5vw, 6rem);
       }
 
-      /* Not sticky: with the personal facts in it the column is tall enough to
-         outrun a laptop viewport, and a stuck element taller than the screen
-         puts its own bottom permanently out of reach. */
+      /* Not sticky: with the talks in it the column is tall enough to outrun a
+         laptop viewport, and a stuck element taller than the screen puts its
+         own bottom permanently out of reach. */
       .sidebar {
         display: flex;
         flex-direction: column;
@@ -443,18 +453,27 @@
         flex: 0 0 auto;
         width: clamp(16rem, 20vw, 21rem);
       }
-      .credits, .speaking, .personal { order: 0; }
+      .credits, .speaking { order: 0; }
       .masthead { grid-template-columns: 1fr; align-items: start; gap: 1.25rem; }
       .portrait { order: -1; width: 11rem; height: 11rem; }
       h1 { font-size: 3rem; }
-      /* condensed: one item per line, no rules, icons carrying the structure */
-      .links { flex-direction: column; flex-wrap: nowrap; gap: 0.45rem; }
+      /* condensed: one item per line, no rules, icons carrying the structure,
+         and a step down in size — five stacked lines at full body scale cost
+         more height than the column can spare */
+      .links {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        gap: 0.35rem;
+        font-size: 0.875rem;
+        line-height: 1.5;
+      }
+      .links .icon { width: 14px; height: 14px; }
       .credits ul { flex-direction: column; flex-wrap: nowrap; gap: 0.6rem; }
 
-      /* the talks and facts drop to the credits' scale so the left column reads
-         as one continuous thread — name, links, credentials, podium, person —
-         rather than as a second body of running text competing with the right */
-      .speaking .label, .personal .label { margin-bottom: 0.75rem; }
+      /* the talks drop to the credits' scale so the left column reads as one
+         continuous thread — name, links, credentials, podium — rather than as
+         a second body of running text competing with the right */
+      .speaking .label { margin-bottom: 0.75rem; }
 
       /* no room for the two-column dl here: event and year lead, the talk sits
          under them */
@@ -468,14 +487,10 @@
       .talks dd:last-of-type { margin-bottom: 0; }
       .talks .yr { margin-left: 0.35rem; }
 
-      .facts { font-size: 0.8125rem; line-height: 1.55; gap: 0.6rem; }
-      .facts li { padding-left: 1.15rem; }
-      .facts li::before { width: 0.6rem; top: 0.72em; }
-
       .content { flex: 1 1 auto; min-width: 0; }
       .bio { max-width: 44rem; font-size: 1.0625rem; }
       .lede { font-size: 1.25rem; }
-      .areas, .roles { max-width: 48rem; }
+      .areas, .facts, .roles { max-width: 48rem; }
     }
   </style>
 </head>
@@ -524,16 +539,6 @@
             <a href="https://www.iitk.ac.in">IIT Kanpur</a>
           </li>
         </ul>
-        <ul>
-          <li>
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="5.2"/><path d="m8.6 13.6-1.3 6.4L12 17.4l4.7 2.6-1.3-6.4"/></svg>
-            <span><a href="https://patents.google.com/?inventor=Hitesh+Seth&amp;status=GRANT">7 US patents</a> in payments &amp; commerce</span>
-          </li>
-          <li>
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7.5C10.5 6 8.5 5.3 5 5.3v12.4c3.5 0 5.5.7 7 2.2 1.5-1.5 3.5-2.2 7-2.2V5.3c-3.5 0-5.5.7-7 2.2Z"/><path d="M12 7.5v12.4"/></svg>
-            <span>Author of <cite>Special Edition Using JavaBeans</cite> and <cite>Microsoft .NET Kick Start</cite></span>
-          </li>
-        </ul>
       </footer>
 
       <section class="speaking">
@@ -559,21 +564,6 @@
         </dl>
       </section>
 
-      <section class="personal">
-        <h2 class="label">A few other things</h2>
-        <ul class="facts">
-          <li>I'm a professional portrait photographer.</li>
-          <li>I love golf — a recent convert, but love to play and I even got my first hole-in-one :).</li>
-          <li>I love to cook, particularly Middle Eastern and Asian cuisines.</li>
-          <li>
-            <em>Keera</em> (<i lang="hi-Latn">kīṛā</i>) is Hindi for the curiosity bug. It's what carried me from a
-            curious teenager in Agra to a lifelong learner at Stanford, and it's still
-            the thread through everything I build. I told that story on the
-            <a href="https://www.xiaoyuzhoufm.com/episode/6a5d0c52a3fec224d5a013e4">PILOT
-            Earthbook podcast</a>.
-          </li>
-        </ul>
-      </section>
     </div>
 
     <div class="content">
@@ -644,6 +634,32 @@
         <dt>Kore.ai</dt>
         <dd>Chief Solution Architect &amp; Head of Forward Deployed Engineering</dd>
       </dl>
+      <ul class="marks">
+        <li>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="5.2"/><path d="m8.6 13.6-1.3 6.4L12 17.4l4.7 2.6-1.3-6.4"/></svg>
+          <span><a href="https://patents.google.com/?inventor=Hitesh+Seth&amp;status=GRANT">7 US patents</a> in payments &amp; commerce</span>
+        </li>
+        <li>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7.5C10.5 6 8.5 5.3 5 5.3v12.4c3.5 0 5.5.7 7 2.2 1.5-1.5 3.5-2.2 7-2.2V5.3c-3.5 0-5.5.7-7 2.2Z"/><path d="M12 7.5v12.4"/></svg>
+          <span>Author of <cite>Special Edition Using JavaBeans</cite> and <cite>Microsoft .NET Kick Start</cite></span>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="label">A few other things</h2>
+      <ul class="facts">
+        <li>I'm a professional portrait photographer.</li>
+        <li>I love golf — a recent convert, but love to play and I even got my first hole-in-one :).</li>
+        <li>I love to cook, particularly Middle Eastern and Asian cuisines.</li>
+        <li>
+          <em>Keera</em> (<i lang="hi-Latn">kīṛā</i>) is Hindi for the curiosity bug. It's what carried me from a
+          curious teenager in Agra to a lifelong learner at Stanford, and it's still
+          the thread through everything I build. I told that story on the
+          <a href="https://www.xiaoyuzhoufm.com/episode/6a5d0c52a3fec224d5a013e4">PILOT
+          Earthbook podcast</a>.
+        </li>
+      </ul>
     </section>
 
     </div>
