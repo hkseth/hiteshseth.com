@@ -338,30 +338,6 @@
     }
     .facts a:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
-    /* patents and books — footnotes to the roles they sit under, so they set a
-       step below the roles rather than as a section of their own */
-    .marks {
-      margin: 1.15rem 0 0;
-      padding: 0;
-      list-style: none;
-      display: grid;
-      gap: 0.5rem;
-      max-width: 48rem;
-      font-size: 0.8125rem;
-      line-height: 1.55;
-      color: var(--faint);
-    }
-    .marks li { display: flex; align-items: flex-start; gap: 0.5rem; }
-    .marks .icon { margin-top: 0.15em; }
-    .marks a {
-      color: inherit;
-      text-decoration: underline;
-      text-decoration-color: var(--rule);
-      text-underline-offset: 3px;
-      transition: color 0.15s ease, text-decoration-color 0.15s ease;
-    }
-    .marks a:hover { color: var(--accent); text-decoration-color: var(--accent); }
-
     .icon { width: 15px; height: 15px; flex: none; color: var(--faint); }
 
     .links {
@@ -428,6 +404,20 @@
       gap: 0.5rem 1.35rem;
     }
     .credits li { display: flex; align-items: flex-start; gap: 0.5rem; }
+
+    /* patents and books — the list layout comes from .credits ul/li above, so
+       these only add what the crest list has no use for. The links are styled
+       on .marks rather than on .credits so that .edu a stays unscoped: a broad
+       .credits a would tie on specificity and win on source order. */
+    .marks .icon { margin-top: 0.15em; }
+    .marks a {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-color: var(--rule);
+      text-underline-offset: 3px;
+      transition: color 0.15s ease, text-decoration-color 0.15s ease;
+    }
+    .marks a:hover { color: var(--accent); text-decoration-color: var(--accent); }
 
     /* Wide screens: identity moves into a sticky left column so the page uses
        the width while running text keeps a readable measure. The two columns
@@ -539,6 +529,16 @@
             <a href="https://www.iitk.ac.in">IIT Kanpur</a>
           </li>
         </ul>
+        <ul class="marks">
+          <li>
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="5.2"/><path d="m8.6 13.6-1.3 6.4L12 17.4l4.7 2.6-1.3-6.4"/></svg>
+            <span><a href="https://patents.google.com/?inventor=Hitesh+Seth&amp;status=GRANT">7 US patents</a> in payments &amp; commerce</span>
+          </li>
+          <li>
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7.5C10.5 6 8.5 5.3 5 5.3v12.4c3.5 0 5.5.7 7 2.2 1.5-1.5 3.5-2.2 7-2.2V5.3c-3.5 0-5.5.7-7 2.2Z"/><path d="M12 7.5v12.4"/></svg>
+            <span>Author of <cite>Special Edition Using JavaBeans</cite> and <cite>Microsoft .NET Kick Start</cite></span>
+          </li>
+        </ul>
       </footer>
 
       <section class="speaking">
@@ -634,16 +634,6 @@
         <dt>Kore.ai</dt>
         <dd>Chief Solution Architect &amp; Head of Forward Deployed Engineering</dd>
       </dl>
-      <ul class="marks">
-        <li>
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="5.2"/><path d="m8.6 13.6-1.3 6.4L12 17.4l4.7 2.6-1.3-6.4"/></svg>
-          <span><a href="https://patents.google.com/?inventor=Hitesh+Seth&amp;status=GRANT">7 US patents</a> in payments &amp; commerce</span>
-        </li>
-        <li>
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7.5C10.5 6 8.5 5.3 5 5.3v12.4c3.5 0 5.5.7 7 2.2 1.5-1.5 3.5-2.2 7-2.2V5.3c-3.5 0-5.5.7-7 2.2Z"/><path d="M12 7.5v12.4"/></svg>
-          <span>Author of <cite>Special Edition Using JavaBeans</cite> and <cite>Microsoft .NET Kick Start</cite></span>
-        </li>
-      </ul>
     </section>
 
     <section>
