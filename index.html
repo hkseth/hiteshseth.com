@@ -144,8 +144,10 @@
        they still read as a footer on narrow screens. The personal facts live
        in the sidebar for the wide layout's sake, but ordering them just above
        the credits keeps the narrow reading order they had when they sat at the
-       bottom of the running content. */
+       bottom of the running content. Same for the talks, which trail the rest
+       of the running content. */
     .sidebar { display: contents; }
+    .speaking { order: 8; }
     .personal { order: 9; }
     .credits { order: 10; }
     .content {
@@ -441,7 +443,7 @@
         flex: 0 0 auto;
         width: clamp(16rem, 20vw, 21rem);
       }
-      .credits, .personal { order: 0; }
+      .credits, .speaking, .personal { order: 0; }
       .masthead { grid-template-columns: 1fr; align-items: start; gap: 1.25rem; }
       .portrait { order: -1; width: 11rem; height: 11rem; }
       h1 { font-size: 3rem; }
@@ -449,10 +451,23 @@
       .links { flex-direction: column; flex-wrap: nowrap; gap: 0.45rem; }
       .credits ul { flex-direction: column; flex-wrap: nowrap; gap: 0.6rem; }
 
-      /* the facts drop to the credits' scale so the left column reads as one
-         continuous thread — name, links, credentials, the person — rather than
-         as a second body of running text competing with the right column */
-      .personal .label { margin-bottom: 0.75rem; }
+      /* the talks and facts drop to the credits' scale so the left column reads
+         as one continuous thread — name, links, credentials, podium, person —
+         rather than as a second body of running text competing with the right */
+      .speaking .label, .personal .label { margin-bottom: 0.75rem; }
+
+      /* no room for the two-column dl here: event and year lead, the talk sits
+         under them */
+      .talks {
+        grid-template-columns: 1fr;
+        row-gap: 0.1rem;
+        font-size: 0.8125rem;
+        line-height: 1.45;
+      }
+      .talks dd { margin-bottom: 0.7rem; }
+      .talks dd:last-of-type { margin-bottom: 0; }
+      .talks .yr { margin-left: 0.35rem; }
+
       .facts { font-size: 0.8125rem; line-height: 1.55; gap: 0.6rem; }
       .facts li { padding-left: 1.15rem; }
       .facts li::before { width: 0.6rem; top: 0.72em; }
@@ -461,7 +476,6 @@
       .bio { max-width: 44rem; font-size: 1.0625rem; }
       .lede { font-size: 1.25rem; }
       .areas, .roles { max-width: 48rem; }
-      .talks { grid-template-columns: minmax(0, 18rem) 1fr; }
     }
   </style>
 </head>
@@ -521,6 +535,29 @@
           </li>
         </ul>
       </footer>
+
+      <section class="speaking">
+        <h2 class="label">Recent speaking</h2>
+        <dl class="roles talks">
+          <dt>Super AI/ML Summit <span class="yr">2025</span></dt>
+          <dd><a href="https://www.linkedin.com/posts/hiteshseth_looking-forward-to-speaking-at-the-annual-activity-7389536955392290816-uzug">Rise of Agents</a></dd>
+
+          <dt>Quantum + AI 2.0 <span class="yr">2025</span></dt>
+          <dd><a href="https://www.linkedin.com/posts/hiteshseth_looking-forward-for-to-meeting-old-and-new-activity-7370885689363554304-MiUA">Beyond PQC: Quantum Computing &amp; Blockchain Security</a></dd>
+
+          <dt>Innodata GenAI Summit <span class="yr">2025</span></dt>
+          <dd><a href="https://world.aiacceleratorinstitute.com/location/innodatagenaisummit/agenda">High-Quality Data for Modern AI Systems</a></dd>
+
+          <dt>AI Infra Summit <span class="yr">2025</span></dt>
+          <dd><a href="https://www.linkedin.com/posts/hiteshseth_im-joining-the-speaker-lineup-at-the-ai-activity-7356060635375280128-6amo">Deploying GenAI in Highly Regulated Industries</a></dd>
+
+          <dt>BIAN Banking Summit, London <span class="yr">2024</span></dt>
+          <dd><a href="https://www.linkedin.com/posts/hiteshseth_the-first-roundtables-have-been-announced-activity-7258130358443913217-Zi_6">API-Centric Platforms for Generative AI</a></dd>
+
+          <dt>Confluent Current <span class="yr">2023</span></dt>
+          <dd><a href="https://www.confluent.io/events/current/2023/kafka-flink-and-beyond/">Keynote: Kafka, Flink &amp; Beyond</a></dd>
+        </dl>
+      </section>
 
       <section class="personal">
         <h2 class="label">A few other things</h2>
@@ -606,29 +643,6 @@
 
         <dt>Kore.ai</dt>
         <dd>Chief Solution Architect &amp; Head of Forward Deployed Engineering</dd>
-      </dl>
-    </section>
-
-    <section>
-      <h2 class="label">Recent speaking</h2>
-      <dl class="roles talks">
-        <dt>Super AI/ML Summit <span class="yr">2025</span></dt>
-        <dd><a href="https://www.linkedin.com/posts/hiteshseth_looking-forward-to-speaking-at-the-annual-activity-7389536955392290816-uzug">Rise of Agents</a></dd>
-
-        <dt>Quantum + AI 2.0 <span class="yr">2025</span></dt>
-        <dd><a href="https://www.linkedin.com/posts/hiteshseth_looking-forward-for-to-meeting-old-and-new-activity-7370885689363554304-MiUA">Beyond PQC: Quantum Computing &amp; Blockchain Security</a></dd>
-
-        <dt>Innodata GenAI Summit <span class="yr">2025</span></dt>
-        <dd><a href="https://world.aiacceleratorinstitute.com/location/innodatagenaisummit/agenda">High-Quality Data for Modern AI Systems</a></dd>
-
-        <dt>AI Infra Summit <span class="yr">2025</span></dt>
-        <dd><a href="https://www.linkedin.com/posts/hiteshseth_im-joining-the-speaker-lineup-at-the-ai-activity-7356060635375280128-6amo">Deploying GenAI in Highly Regulated Industries</a></dd>
-
-        <dt>BIAN Banking Summit, London <span class="yr">2024</span></dt>
-        <dd><a href="https://www.linkedin.com/posts/hiteshseth_the-first-roundtables-have-been-announced-activity-7258130358443913217-Zi_6">API-Centric Platforms for Generative AI</a></dd>
-
-        <dt>Confluent Current <span class="yr">2023</span></dt>
-        <dd><a href="https://www.confluent.io/events/current/2023/kafka-flink-and-beyond/">Keynote: Kafka, Flink &amp; Beyond</a></dd>
       </dl>
     </section>
 
