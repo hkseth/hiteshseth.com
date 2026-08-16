@@ -19,6 +19,79 @@
   <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#101216" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='13' fill='%232f4a8f'/%3E%3Cpath d='M32 12v40' stroke='%23f6f7f9' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+  <!-- Everything here is also stated in the page body; keep the two in step.
+       JSON-LD is raw text, so `&` stays literal — no entities. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://hiteshseth.com/#hitesh-seth",
+        "name": "Hitesh Seth",
+        "url": "https://hiteshseth.com/",
+        "image": "https://hiteshseth.com/portrait.jpg",
+        "email": "hitesh.seth@gmail.com",
+        "jobTitle": "Co-Founder & Technology Advisor",
+        "description": "Hands-on technology executive and enterprise architect with 30+ years turning large-scale data, AI/ML, GenAI, and Agentic AI into production reality inside the world's most regulated industries — financial services, insurance, and life sciences.",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Ādisūtra.ai",
+          "url": "https://adisutra.ai"
+        },
+        "alumniOf": [
+          {
+            "@type": "CollegeOrUniversity",
+            "name": "Stanford Graduate School of Business",
+            "url": "https://www.gsb.stanford.edu"
+          },
+          {
+            "@type": "CollegeOrUniversity",
+            "name": "Indian Institute of Technology Kanpur",
+            "url": "https://www.iitk.ac.in"
+          }
+        ],
+        "knowsAbout": [
+          "LLM & Agentic AI Platforms",
+          "Data Architecture & Engineering",
+          "Enterprise Architecture",
+          "AI/ML Ops",
+          "Responsible AI & Governance",
+          "Medicine — Healthcare, Clinical, Life Sciences & Health Tech",
+          "Cloud-Native (AWS / Azure / GCP)",
+          "API-first & Event-Driven Integration",
+          "Financial Services & Fintech",
+          "M&A and Startups"
+        ],
+        "sameAs": [
+          "https://adisutra.ai",
+          "https://www.linkedin.com/in/hiteshseth",
+          "https://x.com/hitech",
+          "https://substack.com/@hiteshseth"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://hiteshseth.com/#website",
+        "url": "https://hiteshseth.com/",
+        "name": "Hitesh Seth",
+        "inLanguage": "en",
+        "about": { "@id": "https://hiteshseth.com/#hitesh-seth" },
+        "publisher": { "@id": "https://hiteshseth.com/#hitesh-seth" }
+      },
+      {
+        "@type": "Book",
+        "name": "Special Edition Using JavaBeans",
+        "author": { "@id": "https://hiteshseth.com/#hitesh-seth" }
+      },
+      {
+        "@type": "Book",
+        "name": "Microsoft .NET Kick Start",
+        "author": { "@id": "https://hiteshseth.com/#hitesh-seth" }
+      }
+    ]
+  }
+  </script>
   <style>
     :root {
       --paper:  #f6f7f9;
